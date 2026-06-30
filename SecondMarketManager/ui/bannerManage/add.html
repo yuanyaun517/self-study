@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>轮播图表单</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+    <link rel="stylesheet" href="../../css/admin.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <form class="layui-form layui-form-pane" id="bannerForm" lay-filter="bannerForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label">发布人</label>
+                <div class="layui-input-block">
+                    <input type="text" name="sendUser" placeholder="默认当前管理员" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">轮播图</label>
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn layui-btn-normal" id="uploadBannerBtn">上传图片</button>
+                    <div class="form-tip">建议使用横版图片，上传后将自动写入可访问地址。</div>
+                    <img id="bannerPreview" class="layui-hide" style="margin-top: 14px; max-width: 100%; max-height: 220px; border-radius: 10px;" alt="banner preview">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBanner">保存</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/AppConfig.js" charset="utf-8"></script>
+<script src="../../js/admin-common.js" charset="utf-8"></script>
+<script src="../../js/bannerManage.js" charset="utf-8"></script>
+</body>
+</html>

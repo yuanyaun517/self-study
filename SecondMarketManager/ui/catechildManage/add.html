@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>分类商品关联表单</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <form class="layui-form layui-form-pane" id="catechildForm" lay-filter="catechildForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择分类</label>
+                <div class="layui-input-block">
+                    <select id="cateSelect" name="cateid" lay-verify="required"></select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择商品</label>
+                <div class="layui-input-block">
+                    <select id="goodsSelect" name="goodid" lay-verify="required"></select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveCatechild">保存</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/AppConfig.js" charset="utf-8"></script>
+<script src="../../js/admin-common.js" charset="utf-8"></script>
+<script src="../../js/catechildManage.js" charset="utf-8"></script>
+</body>
+</html>

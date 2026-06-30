@@ -1,0 +1,20 @@
+CREATE TABLE `category` (
+  `cateid` int NOT NULL AUTO_INCREMENT,
+  `catename` varchar(50) NOT NULL,
+  `ishavechild` varchar(10) NOT NULL,
+  PRIMARY KEY (`cateid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `catechild` (
+  `childid` int NOT NULL AUTO_INCREMENT,
+  `cateid` int NOT NULL,
+  `goodid` varchar(50) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `childname` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`childid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `goods`
+ADD COLUMN `number` int NOT NULL DEFAULT 0 COMMENT '商品数量' AFTER `price`;
+
+ALTER TABLE `orders`
+ADD COLUMN `number` int NOT NULL DEFAULT 1 COMMENT '订单购买数量' AFTER `price`;

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>&#x65B0;&#x589E;&#x7528;&#x6237;</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+    <link rel="stylesheet" href="../../css/admin.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main manager-profile-shell">
+        <div class="manager-profile-section">
+            <div class="manager-profile-head">
+                <h2 id="userFormTitle">&#x65B0;&#x589E;&#x7528;&#x6237;</h2>
+                <p id="userFormDesc">&#x8D26;&#x53F7;&#x3001;&#x5BC6;&#x7801;&#x3001;&#x6635;&#x79F0;&#x3001;&#x6027;&#x522B;&#x3001;&#x624B;&#x673A;&#x53F7;&#x3001;&#x8EAB;&#x4EFD;&#x8BC1;&#x53F7;&#x3001;&#x5B66;&#x9662;&#x3001;&#x73ED;&#x7EA7;&#x4E3A;&#x5FC5;&#x586B;&#x9879;&#x3002;&#x5934;&#x50CF;&#x4E3A;&#x9009;&#x586B;&#x9879;&#xFF0C;&#x5982;&#x9700;&#x586B;&#x5199;&#x8BF7;&#x901A;&#x8FC7;&#x4E0A;&#x4F20;&#x6309;&#x94AE;&#x9009;&#x62E9;&#x56FE;&#x7247;&#x3002;</p>
+            </div>
+
+            <div class="manager-avatar-row">
+                <div id="userAvatarPreview" class="manager-avatar-preview">+</div>
+                <div class="manager-avatar-actions">
+                    <button type="button" class="layui-btn layui-btn-normal" id="uploadUserAvatarBtn">&#x4E0A;&#x4F20;&#x5934;&#x50CF;</button>
+                    <button type="button" class="layui-btn layui-btn-primary" id="previewUserAvatarBtn">&#x9884;&#x89C8;&#x5934;&#x50CF;</button>
+                    <button type="button" class="layui-btn layui-btn-primary" id="clearUserAvatarBtn">&#x6E05;&#x7A7A;&#x5934;&#x50CF;</button>
+                    <div class="manager-avatar-tip">&#x652F;&#x6301; jpg&#x3001;jpeg&#x3001;png&#x3001;gif&#x3001;webp &#x683C;&#x5F0F;&#x3002;&#x4E0A;&#x4F20;&#x6210;&#x529F;&#x540E;&#x4F1A;&#x81EA;&#x52A8;&#x56DE;&#x586B;&#x5934;&#x50CF;&#x5730;&#x5740;&#x3002;</div>
+                </div>
+            </div>
+        </div>
+
+        <form class="layui-form layui-form-pane" id="userForm" lay-filter="userForm">
+            <input type="hidden" id="userIcon" name="icon">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">&#x8D26;&#x53F7;</label>
+                <div class="layui-input-block">
+                    <input type="text" name="account" lay-verify="required" autocomplete="off" placeholder="&#x8BF7;&#x8F93;&#x5165;&#x8D26;&#x53F7;" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">&#x5BC6;&#x7801;</label>
+                <div class="layui-input-block">
+                    <input type="password" id="userPassword" name="password" autocomplete="off" placeholder="&#x8BF7;&#x8F93;&#x5165;&#x5BC6;&#x7801;" class="layui-input">
+                    <div class="form-tip" id="userPasswordTip"></div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">&#x6635;&#x79F0;</label>
+                <div class="layui-input-block">
+                    <input type="text" name="nickname" lay-verify="required" autocomplete="off" placeholder="&#x8BF7;&#x8F93;&#x5165;&#x6635;&#x79F0;" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">&#x6027;&#x522B;</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="sex" value="male" title="&#x7537;" checked>
+                    <input type="radio" name="sex" value="female" title="&#x5973;">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">&#x624B;&#x673A;&#x53F7;</label>
+                <div class="layui-input-block">
+                    <input type="text" name="tel" lay-verify="required" autocomplete="off" placeholder="&#x8BF7;&#x8F93;&#x5165;11&#x4F4D;&#x624B;&#x673A;&#x53F7;" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">&#x8EAB;&#x4EFD;&#x8BC1;&#x53F7;</label>
+                <div class="layui-input-block">
+                    <input type="text" name="idcard" lay-verify="required" autocomplete="off" placeholder="&#x8BF7;&#x8F93;&#x5165;18&#x4F4D;&#x8EAB;&#x4EFD;&#x8BC1;&#x53F7;" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">&#x5B66;&#x9662;</label>
+                <div class="layui-input-block">
+                    <input type="text" name="college" lay-verify="required" autocomplete="off" placeholder="&#x8BF7;&#x8F93;&#x5165;&#x5B66;&#x9662;" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">&#x73ED;&#x7EA7;</label>
+                <div class="layui-input-block">
+                    <input type="text" name="grade" lay-verify="required" autocomplete="off" placeholder="&#x8BF7;&#x8F93;&#x5165;&#x73ED;&#x7EA7;" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">&#x5BBF;&#x820D;&#x53F7;</label>
+                <div class="layui-input-block">
+                    <input type="text" name="roomnumb" autocomplete="off" placeholder="&#x8BF7;&#x8F93;&#x5165;&#x5BBF;&#x820D;&#x53F7;&#xFF08;&#x9009;&#x586B;&#xFF09;" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">&#x5934;&#x50CF;&#x5730;&#x5740;</label>
+                <div class="layui-input-block">
+                    <input type="text" id="userIconDisplay" value="" class="layui-input" readonly placeholder="&#x4E0A;&#x4F20;&#x6210;&#x529F;&#x540E;&#x81EA;&#x52A8;&#x56DE;&#x586B;">
+                    <div class="form-tip">&#x5982;&#x9700;&#x586B;&#x5199;&#x5934;&#x50CF;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x4E0A;&#x65B9;&#x4E0A;&#x4F20;&#x6309;&#x94AE;&#x3002;</div>
+                </div>
+            </div>
+
+            <div class="layui-form-item manager-form-actions">
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveUserForm" id="saveUserSubmitBtn">&#x63D0;&#x4EA4;&#x65B0;&#x589E;</button>
+                <button type="reset" class="layui-btn layui-btn-primary">&#x91CD;&#x7F6E;&#x8868;&#x5355;</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/AppConfig.js" charset="utf-8"></script>
+<script src="../../js/admin-common.js" charset="utf-8"></script>
+<script src="../../js/userManage.js?v=20260519-edit" charset="utf-8"></script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据报表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+    <style>
+        .top-panel {
+            border: 1px solid #eceff9;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .top-panel > .layui-card-body{
+            height: 60px;
+        }
+        .top-panel-number{
+            line-height:60px;
+            font-size: 30px;
+            border-right:1px solid #eceff9;
+        }
+        .top-panel-tips{
+            line-height:30px;
+            font-size: 12px
+        }
+    </style>
+</head>
+<body>
+<!--<div class="layuimini-container">-->
+<div class="layuimini-main">
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md3">
+
+            <div class="layui-card top-panel">
+                <div class="layui-card-header">今日销售额</div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space5">
+                        <div class="layui-col-xs9 layui-col-md9 top-panel-number" id="showDayOrdernum">
+                            9,054,056单
+                        </div>
+                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
+                            今日最火<a style="color: #1aa094" id="showDayPname">百事可乐</a><br>
+                            销量 <a style="color: #aa0000" id="showDayPnum">百事可乐</a><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-col-xs12 layui-col-md3">
+
+            <div class="layui-card top-panel">
+                <div class="layui-card-header">本月销售额</div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space5">
+                        <div class="layui-col-xs9 layui-col-md9 top-panel-number" id="showMonOrdernum">
+                            9,054,056单
+                        </div>
+                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
+                            本月最火 <a style="color: #1aa094" id="showMonPname">女朋友</a><br>
+							销量 <a style="color: #aa0000" id="showMonPnum">百事可乐</a><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-col-xs12 layui-col-md3">
+
+            <div class="layui-card top-panel">
+                <div class="layui-card-header">年度销售额</div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space5">
+                        <div class="layui-col-xs9 layui-col-md9 top-panel-number" id="showYearOrdernum">
+                            9,054,056
+                        </div>
+                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
+                            年度爆款 <a style="color: #1aa094" id="showYearPname">男朋友</a><br>
+							销量 <a style="color: #aa0000" id="showYearPnum">百事可乐</a><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-col-xs12 layui-col-md3">
+
+            <div class="layui-card top-panel">
+                <div class="layui-card-header">总销售额</div>
+                <div class="layui-card-body">
+                    <div class="layui-row layui-col-space5">
+                        <div class="layui-col-xs9 layui-col-md9 top-panel-number" id="showAllOrdernum">
+                            9,054,056单
+                        </div>
+                        <div class="layui-col-xs3 layui-col-md3 top-panel-tips">
+                            最火商品 <a style="color: #1aa094" id="showAllPname">乐事薯片</a><br>
+							销量 <a style="color: #aa0000" id="showAllPnum">百事可乐</a><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+<!-- 上面图表 -->
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-md12">
+            <div id="echarts-records" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div>
+       <!-- <div class="layui-col-xs12 layui-col-md3">
+            <div id="echarts-pies" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+        </div> -->
+    </div>
+
+
+    <div class="layui-row layui-col-space15">
+       <div class="layui-col-xs12 layui-col-md6">
+           <div id="echarts-pies-paytype" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+       </div>
+	   <div class="layui-col-xs12 layui-col-md6">
+	       <div id="echarts-pies-discount" style="background-color:#ffffff;min-height:400px;padding: 10px"></div>
+	   </div>
+    </div>
+
+
+</div>
+<!--</div>-->
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../libs/layui/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="../../js/AppConfig.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+    layui.use(['layer', 'echarts'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer,
+            echarts = layui.echarts;
+			
+			
+			var datas = {
+				"token": window.localStorage.getItem("token"),
+				"userid": window.localStorage.getItem("userid"),
+			};
+			
+			
+			
+			// 获取年月日分析数据
+			$.ajax({
+				url: baseurl + "order/getAnalyseYmd",
+				data: JSON.stringify(datas),
+				type: "post",
+				dataType: "json",
+				headers: {
+					'Content-Type': 'application/json;charset=utf-8'
+				}, //接口json格式
+				success: function(data) {
+					if (data.code == "200") {
+						var d = data.data.info;
+						// 请求成功 渲染数据
+						
+						// 单量渲染
+						$("#showDayOrdernum").text(d.dayOp.length+" 单");
+						$("#showMonOrdernum").text(d.monOp.length+" 单");
+						$("#showYearOrdernum").text(d.yearOp.length+" 单");
+						$("#showAllOrdernum").text(d.allOp.length+" 单");
+						
+						// 最火商品名称渲染
+						$("#showDayPname").text(d.jsonObjectDayData.maxName);
+						$("#showMonPname").text(d.jsonObjectMonData.maxName);
+						$("#showYearPname").text(d.jsonObjectYearData.maxName);
+						$("#showAllPname").text(d.jsonObjectAllData.maxName);
+						// 最火商品数量渲染
+						$("#showDayPnum").text(d.jsonObjectDayData.max);
+						$("#showMonPnum").text(d.jsonObjectMonData.max);
+						$("#showYearPnum").text(d.jsonObjectYearData.max);
+						$("#showAllPnum").text(d.jsonObjectAllData.max);
+						
+					} else {
+						layer.alert(data.data.info);
+					}
+				},
+				error: function(data) {
+					alertHttpError();
+				}
+			});
+			
+			
+			
+			
+			// 获取热销前5排行榜商品分析数据
+			$.ajax({
+				url: baseurl + "order/getAnalyseTop5",
+				data: JSON.stringify(datas),
+				type: "post",
+				dataType: "json",
+				headers: {
+					'Content-Type': 'application/json;charset=utf-8'
+				}, //接口json格式
+				success: function(data) {
+					if (data.code == "200") {
+						var d = data.data.info;
+						// 请求成功 渲染图表
+						
+						/**
+						 * 热销前5趋势图
+						 */
+						var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
+						
+						var optionRecords = {
+						    title: {
+						        text: '热销前5趋势图'
+						    },
+						    tooltip: {
+						        trigger: 'axis',
+						        axisPointer: {
+						            type: 'cross',
+						            label: {
+						                backgroundColor: '#6a7985'
+						            }
+						        }
+						    },
+						    legend: {
+						        data: [
+									d.valOfPast[0].productNum.pname, 
+									d.valOfPast[1].productNum.pname, 
+									d.valOfPast[2].productNum.pname, 
+									d.valOfPast[3].productNum.pname, 
+									d.valOfPast[4].productNum.pname, 
+									],
+								
+						    },
+						    toolbox: {
+						        feature: {
+						            saveAsImage: {}
+						        }
+						    },
+						    grid: {
+						        left: '3%',
+						        right: '4%',
+						        bottom: '3%',
+						        containLabel: true
+						    },
+						    xAxis: [
+						        {
+						            type: 'category',
+						            boundaryGap: false,
+						            data: d.dayOfPast
+						        }
+						    ],
+						    yAxis: [
+						        {
+						            type: 'value'
+						        }
+						    ],
+						    series: [
+						        {
+						            name: d.valOfPast[0].productNum.pname,
+						            type: 'line',
+						            stack: '总量',
+						            areaStyle: {},
+						            data: [d.valOfPast[0].val1, d.valOfPast[0].val2, d.valOfPast[0].val3, d.valOfPast[0].val4, d.valOfPast[0].val5, d.valOfPast[0].val6, d.valOfPast[0].val7]
+						        },
+						       {
+						           name: d.valOfPast[1].productNum.pname,
+						           type: 'line',
+						           stack: '总量',
+						           areaStyle: {},
+						           data: [d.valOfPast[1].val1, d.valOfPast[1].val2, d.valOfPast[1].val3, d.valOfPast[1].val4, d.valOfPast[1].val5, d.valOfPast[1].val6, d.valOfPast[1].val7]
+						       },
+						       {
+						           name: d.valOfPast[2].productNum.pname,
+						           type: 'line',
+						           stack: '总量',
+						           areaStyle: {},
+						           data: [d.valOfPast[2].val1, d.valOfPast[2].val2, d.valOfPast[2].val3, d.valOfPast[2].val4, d.valOfPast[2].val5, d.valOfPast[2].val6, d.valOfPast[2].val7]
+						       },
+						       {
+						           name: d.valOfPast[3].productNum.pname,
+						           type: 'line',
+						           stack: '总量',
+						           areaStyle: {},
+						           data: [d.valOfPast[3].val1, d.valOfPast[3].val2, d.valOfPast[3].val3, d.valOfPast[3].val4, d.valOfPast[3].val5, d.valOfPast[3].val6, d.valOfPast[3].val7]
+						       },
+						        {
+						            name: d.valOfPast[4].productNum.pname,
+						            type: 'line',
+						            stack: '总量',
+						            label: {
+						                normal: {
+						                    show: true,
+						                    position: 'top'
+						                }
+						            },
+						            areaStyle: {},
+						            data: [d.valOfPast[4].val1, d.valOfPast[4].val2, d.valOfPast[4].val3, d.valOfPast[4].val4, d.valOfPast[4].val5, d.valOfPast[4].val6, d.valOfPast[4].val7]
+						        }
+						    ]
+						};
+						echartsRecords.setOption(optionRecords);
+						
+						
+			
+					} else {
+						layer.alert(data.data.info);
+					}
+				},
+				error: function(data) {
+					alertHttpError();
+				}
+			});
+			
+			
+			
+			
+			
+			
+			
+			
+
+		
+		
+
+		// 获取支付方式分析数据
+		$.ajax({
+			url: baseurl + "order/getAnalysePaytype",
+			data: JSON.stringify(datas),
+			type: "post",
+			dataType: "json",
+			headers: {
+				'Content-Type': 'application/json;charset=utf-8'
+			}, //接口json格式
+			success: function(data) {
+				if (data.code == "200") {
+					var d = data.data.info;
+					// 请求成功 渲染图表
+					/**
+					 * 支付方式分析
+					 */
+					var echartsPies = echarts.init(document.getElementById('echarts-pies-paytype'), 'walden');
+					var optionPies = {
+					    title: {
+					        text: '支付方式分析',
+					        left: 'center'
+					    },
+					    tooltip: {
+					        trigger: 'item',
+					        formatter: '{a} <br/>{b} : {c} ({d}%)'
+					    },
+					    legend: {
+					        orient: 'vertical',
+					        left: 'left',
+					        data: d.keys
+					    },
+					    series: [
+					        {
+					            name: '支付方式',
+					            type: 'pie',
+					            radius: '55%',
+					            center: ['50%', '60%'],
+					            roseType: 'radius',
+					            data: [
+					                {value: d.vals[0], name: '支付宝'},
+					                {value: d.vals[1], name: '微信'},
+					                {value: d.vals[2], name: '现金'}
+					            ],
+					            emphasis: {
+					                itemStyle: {
+					                    shadowBlur: 10,
+					                    shadowOffsetX: 0,
+					                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+					                }
+					            }
+					        }
+					    ]
+					};
+					echartsPies.setOption(optionPies);
+					
+		
+				} else {
+					layer.alert(data.data.info);
+				}
+			},
+			error: function(data) {
+				alertHttpError();
+			}
+		});
+		
+		
+		
+      
+		
+		
+		// 获取折扣商品销售分析数据
+		$.ajax({
+			url: baseurl + "order/getAnalyseDiscout",
+			data: JSON.stringify(datas),
+			type: "post",
+			dataType: "json",
+			headers: {
+				'Content-Type': 'application/json;charset=utf-8'
+			}, //接口json格式
+			success: function(data) {
+				if (data.code == "200") {
+					var d = data.data.info;
+					// 请求成功 渲染图表
+					/**
+					 * 支付方式分析
+					 */
+					var echartsPies = echarts.init(document.getElementById('echarts-pies-discount'), 'walden');
+					var optionPies = {
+					    title: {
+					        text: '有无折扣商品销售情况统计',
+					        left: 'center'
+					    },
+					    tooltip: {
+					        trigger: 'item',
+					        formatter: '{a} <br/>{b} : {c} ({d}%)'
+					    },
+					    legend: {
+					        orient: 'vertical',
+					        left: 'left',
+					        data: d.keys
+					    },
+					    series: [
+					        {
+					            name: '有无折扣商品销售数量',
+					            type: 'pie',
+					            radius: '55%',
+					            center: ['50%', '60%'],
+					            roseType: 'radius',
+					            data: [
+					                {value: d.vals[0], name: '有折扣'},
+					                {value: d.vals[1], name: '没折扣'}
+					            ],
+					            emphasis: {
+					                itemStyle: {
+					                    shadowBlur: 10,
+					                    shadowOffsetX: 0,
+					                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+					                }
+					            }
+					        }
+					    ]
+					};
+					echartsPies.setOption(optionPies);
+					
+		
+				} else {
+					layer.alert(data.data.info);
+				}
+			},
+			error: function(data) {
+				alertHttpError();
+			}
+		});
+		
+		
+		
+		
+	
+		
+		
+		
+
+
+
+        // echarts 窗口缩放自适应
+        window.onresize = function () {
+            echartsRecords.resize();
+        }
+
+    });
+</script>
+</body>
+</html>

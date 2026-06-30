@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>编辑分类</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <form class="layui-form layui-form-pane" id="categoryForm" lay-filter="categoryForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label">分类名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="catename" lay-verify="required" autocomplete="off" placeholder="请输入分类名称" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveCategory">保存</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/AppConfig.js" charset="utf-8"></script>
+<script src="../../js/admin-common.js" charset="utf-8"></script>
+<script src="../../js/categoryManage.js" charset="utf-8"></script>
+</body>
+</html>

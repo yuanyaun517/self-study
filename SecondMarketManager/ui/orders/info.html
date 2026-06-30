@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>订单信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+    <link rel="stylesheet" href="../../css/admin.css" media="all">
+</head>
+<body class="orders-page">
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <fieldset class="table-search-fieldset">
+            <legend>筛选订单</legend>
+            <div style="margin: 10px;">
+                <form class="layui-form layui-form-pane">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">关键词</label>
+                            <div class="layui-input-inline" style="width: 280px;">
+                                <input type="text" id="orderKeyword" placeholder="订单ID / 商品名 / 买家 / 手机号" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-inline">
+                                <select id="orderStateFilter">
+                                    <option value="">全部</option>
+                                    <option value="1">待支付</option>
+                                    <option value="2">待发货</option>
+                                    <option value="3">待收货</option>
+                                    <option value="4">已完成</option>
+                                    <option value="5">已取消</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="searchOrders">查询</button>
+                            <button type="button" class="layui-btn layui-btn-primary" id="resetOrdersSearch">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <table class="layui-hide" id="ordersTable" lay-filter="ordersTableFilter"></table>
+    </div>
+</div>
+
+<script type="text/html" id="ordersBar">
+    <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="view">详情</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+</script>
+
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/AppConfig.js" charset="utf-8"></script>
+<script src="../../js/admin-common.js" charset="utf-8"></script>
+<script src="../../js/orders.js" charset="utf-8"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>分类商品关联</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+    <link rel="stylesheet" href="../../css/admin.css" media="all">
+</head>
+<body class="catechild-manage-page">
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <fieldset class="table-search-fieldset">
+            <legend>搜索分类关联</legend>
+            <div style="margin: 10px;">
+                <form class="layui-form layui-form-pane">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">关键词</label>
+                            <div class="layui-input-inline" style="width: 280px;">
+                                <input type="text" id="catechildKeyword" placeholder="分类名 / 商品名 / 商品ID" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="searchCatechild">查询</button>
+                            <button type="button" class="layui-btn layui-btn-primary" id="resetCatechildSearch">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <table class="layui-hide" id="catechildTable" lay-filter="catechildTableFilter"></table>
+    </div>
+</div>
+
+<script type="text/html" id="catechildToolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="add">新增关联</button>
+    </div>
+</script>
+
+<script type="text/html" id="catechildBar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+</script>
+
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/AppConfig.js" charset="utf-8"></script>
+<script src="../../js/admin-common.js" charset="utf-8"></script>
+<script src="../../js/catechildManage.js" charset="utf-8"></script>
+</body>
+</html>

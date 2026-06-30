@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>校园二手交易后台登录</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background:
+                radial-gradient(circle at top left, rgba(30, 159, 255, 0.18), transparent 34%),
+                radial-gradient(circle at bottom right, rgba(22, 119, 255, 0.16), transparent 28%),
+                linear-gradient(135deg, #0f172a 0%, #111827 42%, #1f2937 100%);
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        .login-shell {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+
+        .login-panel {
+            width: 960px;
+            max-width: 100%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            overflow: hidden;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 28px 80px rgba(15, 23, 42, 0.34);
+        }
+
+        .login-brand {
+            position: relative;
+            padding: 56px 48px;
+            background: linear-gradient(145deg, #0ea5e9 0%, #1d4ed8 100%);
+            color: #fff;
+        }
+
+        .login-brand::after {
+            content: "";
+            position: absolute;
+            right: -120px;
+            bottom: -120px;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .login-brand h1 {
+            margin: 0 0 18px;
+            font-size: 34px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .login-brand p {
+            max-width: 420px;
+            margin: 0;
+            line-height: 1.9;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.86);
+        }
+
+        .login-badges {
+            margin-top: 34px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .login-badge {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+            font-size: 13px;
+        }
+
+        .login-form-wrap {
+            padding: 56px 46px 42px;
+        }
+
+        .login-form-wrap h2 {
+            margin: 0 0 10px;
+            color: #111827;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .login-form-wrap .subtext {
+            margin-bottom: 28px;
+            color: #667085;
+            font-size: 14px;
+        }
+
+        .login-btn {
+            width: 100%;
+            height: 44px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .captcha-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .captcha-row .layui-input {
+            flex: 1;
+        }
+
+        .captcha-image {
+            width: 120px;
+            height: 40px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            background: #f8fafc;
+            cursor: pointer;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .captcha-hint {
+            margin-top: 6px;
+            color: #98a2b3;
+            font-size: 12px;
+            text-align: right;
+        }
+
+        .login-footer {
+            margin-top: 18px;
+            color: #98a2b3;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .server-tip {
+            margin-top: 24px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            background: #f8fafc;
+            color: #475467;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        @media screen and (max-width: 900px) {
+            .login-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .login-brand {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="login-shell">
+    <div class="login-panel">
+        <div class="login-brand">
+            <h1>校园二手交易后台</h1>
+            <p>统一管理用户、商品审核、订单流转、论坛内容、公告和分类数据，直接对齐当前小程序业务接口。</p>
+            <div class="login-badges">
+                <div class="login-badge">Layui 管理界面</div>
+                <div class="login-badge">Spring Boot 服务端</div>
+                <div class="login-badge">二手交易全流程管理</div>
+            </div>
+        </div>
+        <div class="login-form-wrap">
+            <h2>管理员登录</h2>
+            <div class="subtext">请输入后台管理员账号、密码和验证码。</div>
+            <form class="layui-form" lay-filter="loginForm">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">账号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="account" lay-verify="required" autocomplete="off" placeholder="请输入管理员账号" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" name="password" lay-verify="required" autocomplete="off" placeholder="请输入管理员密码" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">验证码</label>
+                    <div class="layui-input-block">
+                        <div class="captcha-row">
+                            <input type="text" name="captcha" lay-verify="required" autocomplete="off" placeholder="请输入4位验证码" maxlength="4" class="layui-input">
+                            <img id="captchaImage" class="captcha-image" src="" alt="captcha" title="点击刷新验证码">
+                        </div>
+                        <div class="captcha-hint">点击图片可刷新验证码</div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn-normal login-btn" lay-submit lay-filter="loginSubmit">登录后台</button>
+                </div>
+            </form>
+            <div class="login-footer">校园二手交易后台管理系统</div>
+        </div>
+    </div>
+</div>
+
+<script src="libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="js/AppConfig.js?v=20260508" charset="utf-8"></script>
+<script src="js/admin-common.js?v=20260508" charset="utf-8"></script>
+<script>
+    layui.use(['form', 'jquery', 'layer'], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+
+        if (window.localStorage.getItem('managerId')) {
+            window.location.replace('./ui/main/index.html');
+            return;
+        }
+
+        var currentBaseUrl = typeof window.getBaseUrl === 'function'
+            ? window.getBaseUrl()
+            : String(window.baseurl || '').replace(/\/+$/, '');
+        $('#serverBaseUrl').text(currentBaseUrl || 'http://127.0.0.1:9088');
+
+        function refreshCaptcha() {
+            $('#captchaImage').attr('src', buildApiUrl('/manager/captcha') + '?t=' + Date.now());
+        }
+
+        $('#captchaImage').on('click', refreshCaptcha);
+        refreshCaptcha();
+
+        form.on('submit(loginSubmit)', function (data) {
+            var field = data.field || {};
+            AdminApp.postJson('/manager/login', {
+                account: field.account,
+                password: field.password,
+                captcha: field.captcha
+            }).then(function (result) {
+                if (result.code !== 1) {
+                    refreshCaptcha();
+                    $('input[name="captcha"]').val('');
+                    layer.alert(result.msg || '登录失败', { title: '提示' });
+                    return;
+                }
+
+                AdminApp.setManagerSession(result.data || {});
+                layer.msg('登录成功', function () {
+                    window.location.replace('./ui/main/index.html');
+                });
+            }).catch(function (xhr) {
+                refreshCaptcha();
+                $('input[name="captcha"]').val('');
+                AdminApp.handleHttpError(xhr);
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

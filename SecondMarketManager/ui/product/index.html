@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>商品管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+    <link rel="stylesheet" href="../../css/admin.css" media="all">
+</head>
+<body class="goods-manage-page">
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <fieldset class="table-search-fieldset">
+            <legend>筛选商品</legend>
+            <div style="margin: 10px;">
+                <form class="layui-form layui-form-pane">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">关键词</label>
+                            <div class="layui-input-inline" style="width: 260px;">
+                                <input type="text" id="goodsKeyword" placeholder="商品名 / 成色 / 交易方式 / 描述" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">审核状态</label>
+                            <div class="layui-input-inline">
+                                <select id="goodsManageFilter">
+                                    <option value="">全部</option>
+                                    <option value="0">待审核</option>
+                                    <option value="1">已上架</option>
+                                    <option value="2">已驳回</option>
+                                    <option value="3">已下架</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">分类</label>
+                            <div class="layui-input-inline">
+                                <select id="goodsCategoryFilter"></select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="searchGoods">查询</button>
+                            <button type="button" class="layui-btn layui-btn-primary" id="resetGoodsSearch">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <table class="layui-hide" id="goodsTable" lay-filter="goodsTableFilter"></table>
+    </div>
+</div>
+
+<script type="text/html" id="goodsBar">
+    <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="view">详情</a>
+    {{# if(String(d.manage || '') === '0'){ }}
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="approve">通过</a>
+    <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="reject">驳回</a>
+    {{# } }}
+    {{# if(String(d.manage || '') === '1'){ }}
+    <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="reject">驳回</a>
+    <a class="layui-btn layui-btn-xs" lay-event="soldout">下架</a>
+    {{# } }}
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+</script>
+
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/AppConfig.js" charset="utf-8"></script>
+<script src="../../js/admin-common.js" charset="utf-8"></script>
+<script src="../../js/produt.js?v=20260522-pending-reject" charset="utf-8"></script>
+</body>
+</html>

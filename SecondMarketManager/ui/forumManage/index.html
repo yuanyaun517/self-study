@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>日常发帖管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+    <link rel="stylesheet" href="../../css/admin.css" media="all">
+    <style>
+        .forum-manage-title {
+            margin: 8px 0 2px;
+            font-size: 18px;
+            font-weight: 400;
+            color: #666666;
+        }
+
+        .forum-table-meta {
+            margin: 14px 0 10px;
+            color: #666666;
+            font-size: 13px;
+        }
+
+        .forum-table-scroll {
+            overflow-x: auto;
+            border: 1px solid #ebeef5;
+            border-radius: 10px;
+            background: #ffffff;
+        }
+
+        .forum-table-scroll .layui-table {
+            margin: 0;
+        }
+
+        .forum-manage-cover {
+            width: 74px;
+            height: 74px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 8px;
+            border: 1px solid #e8eaec;
+            background: #f8f8f8;
+        }
+
+        .forum-manage-cover-empty {
+            color: #999999;
+        }
+
+        .forum-manage-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .forum-manage-empty {
+            padding: 48px 16px;
+            color: #999999;
+            font-size: 14px;
+            text-align: center;
+            border: 1px dashed #d9d9d9;
+            border-radius: 10px;
+            background: #ffffff;
+        }
+
+        .forum-comment-panel {
+            padding: 18px 18px 6px;
+            background: #f8fafc;
+        }
+
+        .forum-comment-meta {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: #ffffff;
+        }
+
+        .forum-comment-meta h3 {
+            margin: 0 0 8px;
+            color: #111827;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .forum-comment-meta p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 13px;
+            line-height: 1.7;
+            word-break: break-all;
+        }
+
+        .forum-comment-list {
+            display: grid;
+            gap: 12px;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        .forum-comment-card,
+        .forum-comment-reply {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: #ffffff;
+        }
+
+        .forum-comment-card {
+            padding: 14px 16px;
+        }
+
+        .forum-comment-card-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .forum-comment-author {
+            min-width: 0;
+        }
+
+        .forum-comment-author strong {
+            display: block;
+            color: #111827;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .forum-comment-author span {
+            display: block;
+            margin-top: 4px;
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .forum-comment-content {
+            margin-top: 10px;
+            color: #1f2937;
+            font-size: 14px;
+            line-height: 1.8;
+            word-break: break-all;
+            white-space: pre-wrap;
+        }
+
+        .forum-comment-replies {
+            margin-top: 12px;
+            display: grid;
+            gap: 10px;
+            padding-left: 18px;
+            border-left: 2px solid #e5e7eb;
+        }
+
+        .forum-comment-reply {
+            padding: 12px 14px;
+            background: #f9fafb;
+        }
+
+        .forum-comment-reply-target {
+            color: #2563eb;
+            font-size: 12px;
+        }
+
+        .forum-comment-empty {
+            padding: 36px 12px;
+            color: #9ca3af;
+            font-size: 14px;
+            text-align: center;
+            background: #ffffff;
+            border: 1px dashed #d1d5db;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <fieldset class="table-search-fieldset">
+            <legend>校园发帖管理</legend>
+            <div style="margin: 10px 14px 18px;">
+                <div class="forum-manage-title">平台所有校园帖子管理</div>
+            </div>
+        </fieldset>
+
+        <fieldset class="table-search-fieldset">
+            <legend>搜索信息</legend>
+            <div style="margin: 10px;">
+                <form class="layui-form layui-form-pane">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">帖子内容</label>
+                            <div class="layui-input-inline" style="width: 260px;">
+                                <input type="text" id="forumKeyword" placeholder="输入标题、内容或分类进行查找" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="searchForum">
+                                <i class="layui-icon layui-icon-search"></i> 搜索
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <div id="forumTableContainer"></div>
+    </div>
+</div>
+
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/AppConfig.js?v=20260509" charset="utf-8"></script>
+<script src="../../js/admin-common.js?v=20260509" charset="utf-8"></script>
+<script src="../../js/forumManage.js?v=20260509-listfix" charset="utf-8"></script>
+</body>
+</html>

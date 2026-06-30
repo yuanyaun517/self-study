@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.only.hw.secondmarketserver.dao.CollectDao">
+
+    <resultMap type="cn.only.hw.secondmarketserver.entity.Collect" id="CollectMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="VARCHAR"/>
+        <result property="userid" column="user" jdbcType="INTEGER"/>
+        <result property="sid" column="sid" jdbcType="INTEGER"/>
+        <result property="updateTime" column="c_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="queryById" resultMap="CollectMap">
+        select
+          id, type, `user`, sid, c_time
+        from collect
+        where id = #{id}
+    </select>
+
+    <select id="queryAllByLimit" resultMap="CollectMap">
+        select
+          id, type, `user`, sid, c_time
+        from collect
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="userid != null">
+                and `user` = #{userid}
+            </if>
+            <if test="sid != null">
+                and sid = #{sid}
+            </if>
+            <if test="updateTime != null">
+                and c_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from collect
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="userid != null">
+                and `user` = #{userid}
+            </if>
+            <if test="sid != null">
+                and sid = #{sid}
+            </if>
+            <if test="updateTime != null">
+                and c_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into collect(type, `user`, sid, c_time)
+        values (#{type}, #{userid}, #{sid}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into collect(type, `user`, sid, c_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.type}, #{entity.userid}, #{entity.sid}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into collect(type, `user`, sid, c_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.type}, #{entity.userid}, #{entity.sid}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        type = values(type),
+        `user` = values(`user`),
+        sid = values(sid),
+        c_time = values(c_time)
+    </insert>
+
+    <update id="update">
+        update collect
+        <set>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="userid != null">
+                `user` = #{userid},
+            </if>
+            <if test="sid != null">
+                sid = #{sid},
+            </if>
+            <if test="updateTime != null">
+                c_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        delete from collect where id = #{id}
+    </delete>
+
+</mapper>

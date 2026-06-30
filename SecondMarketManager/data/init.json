@@ -1,0 +1,143 @@
+{
+  "homeInfo": {
+    "title": "工作台",
+    "href": "../home/index.html"
+  },
+  "logoInfo": {
+    "title": "校园二手交易后台",
+    "image": "../../img/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "校园二手交易后台",
+      "icon": "fa fa-university",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "工作台",
+          "href": "../home/index.html",
+          "icon": "fa fa-dashboard",
+          "target": "_self"
+        },
+        {
+          "title": "用户管理",
+          "href": "",
+          "icon": "fa fa-users",
+          "target": "_self",
+          "child": [
+            {
+              "title": "用户列表",
+              "href": "../userManage/index.html",
+              "icon": "fa fa-list",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "商品管理",
+          "href": "",
+          "icon": "fa fa-cubes",
+          "target": "_self",
+          "child": [
+            {
+              "title": "商品审核与列表",
+              "href": "../product/index.html?v=20260515-action-rules-v3",
+              "icon": "fa fa-shopping-bag",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "订单管理",
+          "href": "",
+          "icon": "fa fa-file-text-o",
+          "target": "_self",
+          "child": [
+            {
+              "title": "订单信息",
+              "href": "../orders/info.html",
+              "icon": "fa fa-file-text",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "日常发帖管理",
+          "href": "",
+          "icon": "fa fa-comments-o",
+          "target": "_self",
+          "child": [
+            {
+              "title": "日常所有帖子管理",
+              "href": "../forumManage/",
+              "icon": "fa fa-commenting-o",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "运营内容",
+          "href": "",
+          "icon": "fa fa-bullhorn",
+          "target": "_self",
+          "child": [
+            {
+              "title": "轮播图管理",
+              "href": "../bannerManage/index.html",
+              "icon": "fa fa-picture-o",
+              "target": "_self"
+            },
+            {
+              "title": "公告通知管理",
+              "href": "../noticeManage/index.html",
+              "icon": "fa fa-volume-up",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "分类管理",
+          "href": "",
+          "icon": "fa fa-tags",
+          "target": "_self",
+          "child": [
+            {
+              "title": "分类列表",
+              "href": "../categoryManage/index.html",
+              "icon": "fa fa-tag",
+              "target": "_self"
+            },
+            {
+              "title": "分类商品关联",
+              "href": "../catechildManage/index.html",
+              "icon": "fa fa-sitemap",
+              "target": "_self"
+            }
+          ]
+        },
+        {
+          "title": "系统设置",
+          "href": "",
+          "icon": "fa fa-cog",
+          "target": "_self",
+          "child": [
+            {
+              "title": "个人资料",
+              "href": "../user/profile.html",
+              "icon": "fa fa-user-circle",
+              "target": "_self"
+            },
+            {
+              "title": "修改密码",
+              "href": "../user/user-password.html",
+              "icon": "fa fa-key",
+              "target": "_self"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

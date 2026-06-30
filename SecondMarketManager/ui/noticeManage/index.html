@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>公告通知管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+    <link rel="stylesheet" href="../../css/admin.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <fieldset class="table-search-fieldset">
+            <legend>筛选公告通知</legend>
+            <div style="margin: 10px;">
+                <form class="layui-form layui-form-pane">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">关键词</label>
+                            <div class="layui-input-inline" style="width: 260px;">
+                                <input type="text" id="noticeKeyword" placeholder="标题 / 内容" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">类型</label>
+                            <div class="layui-input-inline">
+                                <select id="noticeType">
+                                    <option value="">全部</option>
+                                    <option value="1">公告</option>
+                                    <option value="0">通知</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="searchNotice">查询</button>
+                            <button type="button" class="layui-btn layui-btn-primary" id="resetNoticeSearch">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <table class="layui-hide" id="noticeTable" lay-filter="noticeTableFilter"></table>
+    </div>
+</div>
+
+<script type="text/html" id="noticeFormTemplate">
+    <div style="padding: 16px 18px 8px;">
+        <form class="layui-form layui-form-pane" id="noticeForm" lay-filter="noticeForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label">标题</label>
+                <div class="layui-input-block">
+                    <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">类型</label>
+                <div class="layui-input-block">
+                    <select name="type">
+                        <option value="1">公告</option>
+                        <option value="0">通知</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">内容</label>
+                <div class="layui-input-block">
+                    <textarea name="content" lay-verify="required" placeholder="请输入公告或通知内容" class="layui-textarea" style="min-height: 220px;"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item" style="margin-bottom: 0;">
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveNotice">保存</button>
+            </div>
+        </form>
+    </div>
+</script>
+
+<script type="text/html" id="noticeToolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="add">发布公告通知</button>
+    </div>
+</script>
+
+<script type="text/html" id="noticeBar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+</script>
+
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/AppConfig.js" charset="utf-8"></script>
+<script src="../../js/admin-common.js" charset="utf-8"></script>
+<script src="../../js/noticeManage.js" charset="utf-8"></script>
+</body>
+</html>

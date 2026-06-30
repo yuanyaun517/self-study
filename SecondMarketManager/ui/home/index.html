@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>管理首页</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+    <link rel="stylesheet" href="../../css/admin.css" media="all">
+    <style>
+        .dashboard-overview-grid .overview-card-mark {
+            display: none;
+        }
+    </style>
+</head>
+<body class="dashboard-page">
+<div class="layuimini-container">
+    <div class="layuimini-main dashboard-shell">
+        <section class="dashboard-page-head">
+            <div class="dashboard-page-head-main">
+                <span class="dashboard-page-kicker">Dashboard</span>
+                <h1>校园二手市场后台概览</h1>
+                <p class="dashboard-page-desc">
+                    统一展示用户、商品、订单和内容配置数据，保留后台首页的核心统计与图表信息。
+                </p>
+            </div>
+            <div class="dashboard-page-head-side">
+                <div class="dashboard-head-card">
+                    <div class="dashboard-manager-meta">
+                        <div id="managerAvatarBox" class="dashboard-manager-avatar">A</div>
+                        <div class="dashboard-manager-text">
+                            <span>当前管理员</span>
+                            <strong id="managerAccountText">--</strong>
+                            <small id="currentDateText">--</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-grid dashboard-grid-metrics">
+            <div class="dashboard-card metric-card metric-card-accent">
+                <div class="metric-card-label">累计成交额</div>
+                <div class="metric-card-value" id="paidAmount">0.00</div>
+                <div class="metric-card-meta" id="paidAmountMeta">近 7 日成交额 0.00</div>
+            </div>
+            <div class="dashboard-card metric-card">
+                <div class="metric-card-label">用户总数</div>
+                <div class="metric-card-value" id="userCount">0</div>
+                <div class="metric-card-meta">平台注册用户数量</div>
+            </div>
+            <div class="dashboard-card metric-card">
+                <div class="metric-card-label">商品总数</div>
+                <div class="metric-card-value" id="goodsCount">0</div>
+                <div class="metric-card-meta" id="goodsCountMeta">待审核 0</div>
+            </div>
+            <div class="dashboard-card metric-card">
+                <div class="metric-card-label">订单总数</div>
+                <div class="metric-card-value" id="orderCount">0</div>
+                <div class="metric-card-meta" id="orderCountMeta">待发货 0 · 待收货 0</div>
+            </div>
+            <div class="dashboard-card metric-card">
+                <div class="metric-card-label">帖子总数</div>
+                <div class="metric-card-value" id="forumCount">0</div>
+                <div class="metric-card-meta" id="forumCountMeta">待审核 0</div>
+            </div>
+        </section>
+
+        <div class="layui-row layui-col-space16">
+            <div class="layui-col-md8">
+                <section class="dashboard-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>运营概览</h3>
+                            <p>将审核、履约和内容配置归拢到统一卡片中，便于快速查看平台整体状态。</p>
+                        </div>
+                    </div>
+                    <div class="dashboard-overview-grid">
+                        <div class="overview-card">
+                            <div class="overview-card-head">
+                                <h4>商品审核</h4>
+                            </div>
+                            <div class="overview-card-value" id="goodsStatusSummary">--</div>
+                            <div class="status-chip-list" id="goodsStatusChips"></div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="overview-card-head">
+                                <h4>帖子审核</h4>
+                            </div>
+                            <div class="overview-card-value" id="forumStatusSummary">--</div>
+                            <div class="status-chip-list" id="forumStatusChips"></div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="overview-card-head">
+                                <h4>订单履约</h4>
+                            </div>
+                            <div class="overview-card-value" id="orderProgressSummary">--</div>
+                            <div class="status-chip-list" id="orderStatusChips"></div>
+                        </div>
+                        <div class="overview-card">
+                            <div class="overview-card-head">
+                                <h4>资源配置</h4>
+                                <span class="overview-card-mark" id="contentResourceTotal">0 项</span>
+                            </div>
+                            <div class="overview-card-value" id="contentSummary">--</div>
+                            <div class="status-chip-list" id="contentStatusChips"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="layui-col-md4">
+                <section class="dashboard-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>快捷入口</h3>
+                            <p>保留常用操作入口，便于直接进入商品、订单和帖子管理页面。</p>
+                        </div>
+                    </div>
+                    <div class="dashboard-quick-actions">
+                        <a class="quick-action-card" href="javascript:;" layuimini-content-href="../product/index.html?v=20260515-action-rules-v3" data-title="商品管理" data-menu-title="商品审核与列表" data-icon="fa fa-shopping-bag">
+                            <i class="fa fa-shopping-bag"></i>
+                            <div>
+                                <strong>商品管理</strong>
+                                <span>查看审核与上下架</span>
+                            </div>
+                        </a>
+                        <a class="quick-action-card" href="javascript:;" layuimini-content-href="../orders/info.html" data-title="订单信息" data-menu-title="订单信息" data-icon="fa fa-file-text-o">
+                            <i class="fa fa-file-text-o"></i>
+                            <div>
+                                <strong>订单管理</strong>
+                                <span>跟进交易履约进度</span>
+                            </div>
+                        </a>
+                        <a class="quick-action-card" href="javascript:;" layuimini-content-href="../forumManage/" data-title="日常所有帖子管理" data-menu-title="日常所有帖子管理" data-icon="fa fa-comments-o">
+                            <i class="fa fa-comments-o"></i>
+                            <div>
+                                <strong>帖子管理</strong>
+                                <span>处理社区内容审核</span>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="layui-row layui-col-space16 dashboard-chart-row">
+            <div class="layui-col-md8">
+                <section class="dashboard-panel chart-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>近 7 日趋势分析</h3>
+                            <p>集中展示商品、帖子、订单数量以及成交金额的变化情况。</p>
+                        </div>
+                    </div>
+                    <div class="chart-box chart-box-lg" id="trendChart"></div>
+                </section>
+            </div>
+            <div class="layui-col-md4">
+                <section class="dashboard-panel chart-panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>订单状态分布</h3>
+                            <p>快速识别当前交易链路中的主要状态分布。</p>
+                        </div>
+                    </div>
+                    <div class="chart-box" id="orderChart"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../libs/layui/js/lay-config.js?v=2.0.0" charset="utf-8"></script>
+<script src="../../js/AppConfig.js" charset="utf-8"></script>
+<script src="../../js/admin-common.js" charset="utf-8"></script>
+<script src="../../js/home.js" charset="utf-8"></script>
+</body>
+</html>

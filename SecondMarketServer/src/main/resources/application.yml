@@ -1,0 +1,61 @@
+# 服务器配置
+server:
+  # 服务端口号
+  port: 9088
+
+# Spring框架配置
+spring:
+  # 应用名称
+  application:
+    name: school-market
+  # Servlet相关配置
+  servlet:
+    # 文件上传配置
+    multipart:
+      # 单个文件最大大小
+      max-file-size: 10MB
+      # 整个请求最大大小
+      max-request-size: 20MB
+  # 数据源配置
+  datasource:
+    druid:
+      # MySQL数据库驱动类
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      # 数据库连接URL，包含时区、编码等参数
+      url: jdbc:mysql://localhost:3306/second_market?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      # 数据库用户名
+      username: root
+      # 数据库密码
+      password: 123456
+  # JSON序列化配置
+  jackson:
+    serialization:
+      # 日期是否序列化为时间戳（true表示是）
+      write-dates-as-timestamps: true
+    # 日期格式化模式
+    date-format: yyyy-MM-dd HH:mm:ss
+    # 时区设置（东八区）
+    time-zone: GMT+8
+
+# MyBatis-Plus配置
+mybatis-plus:
+  configuration:
+    # 开启下划线转驼峰命名映射
+    map-underscore-to-camel-case: true
+    # SQL日志实现类（控制台输出SQL语句）
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      # 主键生成策略（自增）
+      id-type: AUTO
+
+# 自定义配置
+common:
+  # 图片存储路径（相对路径）
+  path: ../school-market-master/img/
+
+# 安全配置
+security:
+  crypto:
+    # 用户数据加密密钥（可通过环境变量USER_DATA_CRYPTO_SECRET覆盖）
+    secret: ${USER_DATA_CRYPTO_SECRET:school-market-user-secret}

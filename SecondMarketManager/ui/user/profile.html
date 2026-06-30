@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>个人资料</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+    <link rel="stylesheet" href="../../css/admin.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main manager-profile-shell">
+        <div class="manager-profile-section">
+            <div class="manager-profile-head">
+                <h2>管理员资料</h2>
+                <p>维护管理员账号与头像，保存后会同步更新后台顶部信息和首页卡片。</p>
+            </div>
+
+            <div class="manager-avatar-row">
+                <div id="managerAvatarPreview" class="manager-avatar-preview">A</div>
+                <div class="manager-avatar-actions">
+                    <button type="button" class="layui-btn layui-btn-normal" id="uploadAvatarBtn">上传头像</button>
+                    <button type="button" class="layui-btn layui-btn-primary" id="previewAvatarBtn">预览头像</button>
+                    <button type="button" class="layui-btn layui-btn-primary" id="clearAvatarBtn">清空头像</button>
+                    <div class="manager-avatar-tip">支持 `jpg`、`jpeg`、`png`、`gif`、`webp`。上传后仅在点击保存后写入管理员资料。</div>
+                </div>
+            </div>
+        </div>
+
+        <form class="layui-form layui-form-pane" lay-filter="profileForm">
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理员账号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="account" lay-verify="required" autocomplete="off" placeholder="请输入管理员账号" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理员 ID</label>
+                <div class="layui-input-block">
+                    <input type="text" id="managerIdText" class="layui-input" readonly>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="manager-form-actions">
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveProfile">保存资料</button>
+                    <button type="button" class="layui-btn layui-btn-primary" id="reloadProfileBtn">重新加载</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/AppConfig.js" charset="utf-8"></script>
+<script src="../../js/admin-common.js" charset="utf-8"></script>
+<script src="../../js/manager-profile.js" charset="utf-8"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>&#x7528;&#x6237;&#x7BA1;&#x7406;</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../libs/layui/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../libs/layui/css/public.css" media="all">
+    <link rel="stylesheet" href="../../css/admin.css" media="all">
+</head>
+<body class="goods-manage-page user-manage-page">
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <fieldset class="table-search-fieldset">
+            <legend>&#x641C;&#x7D22;&#x7528;&#x6237;</legend>
+            <div style="margin: 10px;">
+                <form class="layui-form layui-form-pane" lay-filter="searchForm">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">&#x5173;&#x952E;&#x5B57;</label>
+                            <div class="layui-input-inline" style="width: 320px;">
+                                <input type="text" id="keyword" placeholder="&#x8D26;&#x53F7; / &#x6635;&#x79F0; / &#x624B;&#x673A;&#x53F7; / &#x5B66;&#x9662;" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="searchUser">&#x67E5;&#x8BE2;</button>
+                            <button type="button" class="layui-btn layui-btn-primary" id="resetSearch">&#x91CD;&#x7F6E;</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </fieldset>
+
+        <script type="text/html" id="userToolbar">
+            <div class="layui-btn-container">
+                <button type="button" class="layui-btn layui-btn-normal layui-btn-sm" lay-event="add">&#x65B0;&#x589E;&#x7528;&#x6237;</button>
+            </div>
+        </script>
+
+        <table class="layui-hide" id="userTable" lay-filter="userTableFilter"></table>
+    </div>
+</div>
+
+<script type="text/html" id="userBar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">&#x4FEE;&#x6539;</a>
+    <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="resetPassword">&#x91CD;&#x7F6E;&#x5BC6;&#x7801;</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">&#x5220;&#x9664;</a>
+</script>
+
+<script src="../../libs/layui/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../../js/AppConfig.js" charset="utf-8"></script>
+<script src="../../js/admin-common.js" charset="utf-8"></script>
+<script src="../../js/userManage.js?v=20260519-edit" charset="utf-8"></script>
+</body>
+</html>
